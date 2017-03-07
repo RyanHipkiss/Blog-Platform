@@ -9,9 +9,8 @@ use App\Service\Session;
 
 class UserManager {
 
-	protected
-		$userEntityRepository,
-		$userFactory;
+	protected $userEntityRepository;
+	protected $userFactory;
 
 	public function __construct(
 		UserInterface $userEntityRepository,

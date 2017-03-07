@@ -8,9 +8,8 @@ use App\Entity\User;
 
 class UserFactory implements UserFactoryInterface {
 
-	protected 
-		$userInterface,
-		$user;
+	protected $userInterface;
+	protected $user;
 
 	public function __construct(
 		UserInterface $userInterface, 
