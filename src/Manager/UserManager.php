@@ -62,12 +62,17 @@ class UserManager {
 
 		$match = password_verify($user['password'], $password);
 
-		if($match) {
-			Session::login([
-				'email' => $user['email']
-			]);
+		if(!$match) {
+			return [
+				'status'  => 'error',
+				'message' => 'Details are incorrect.'
+			];
 		}
 
-		return $match;
+		Session::login([
+			'email' => $user['email']
+		]);
+
+		return true;
 	}
 }
