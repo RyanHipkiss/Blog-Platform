@@ -19,7 +19,7 @@ class AuthController extends BaseController {
 
 	public function showRegister() 
 	{
-		return $this->getTemplateEngine()->render('auth/register.html');
+		return $this->getTemplateEngine()->render('auth/register.twig');
 	}
 
 	public function postRegister($request, $response) 
@@ -27,12 +27,12 @@ class AuthController extends BaseController {
 		$input = $request->getParsedBody();
 		$registered = $this->userManager->register($input);
 
-		return $this->getTemplateEngine()->render('auth/register.html', ['message' => $registered]);
+		return $this->getTemplateEngine()->render('auth/register.twig', ['message' => $registered]);
 	}
 
 	public function showLogin()
 	{
-		return $this->getTemplateEngine()->render('auth/register.html');
+		return $this->getTemplateEngine()->render('auth/login.twig');
 	}
 
 	public function postLogin($request, $response)
@@ -40,18 +40,10 @@ class AuthController extends BaseController {
 		$input  = $request->getParsedBody();
 		$logged = $this->userManager->login($input);
 		
-		if(!$logged) {
-			
-			if(!is_array($logged)) {
-				$logged = [
-					'status'  => 'error',
-					'message' => 'Details are incorrect.'
-				];
-			}
-
-			return $this->getTemplateEngine()->render('auth/register.html', ['message' => $logged]);
+		if(true === $logged) {
+			return Redirect::to($this->redirectPath);
 		}
 
-		return Redirect::to($this->redirectPath);
+		return $this->getTemplateEngine()->render('auth/login.twig', ['message' => $logged]);
 	}
 }
