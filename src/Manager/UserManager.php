@@ -38,7 +38,17 @@ class UserManager {
 
 		$user = $this->userFactory->create($user);
 
-		return $user;
+		if(false === $user) {
+			return [
+				'status'  => 'error',
+				'message' => 'There was an error creating your account.'
+			];
+		}
+
+		return [
+			'status'  => 'success',
+			'message' => 'Account created succesfully.'
+		];
 	}
 
 	public function login(array $user)
