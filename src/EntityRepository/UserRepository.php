@@ -20,11 +20,6 @@ class UserRepository implements UserInterface {
 		return $this->entityManager;
 	}
 
-	public function add(User $userObject)
-	{
-		$this->getEntityManager()->persist($userObject);
-	}
-
 	public function getPasswordByEmail($email)
 	{
 		$query = $this->getEntityManager()->createQueryBuilder();

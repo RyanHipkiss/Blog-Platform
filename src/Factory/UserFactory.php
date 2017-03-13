@@ -2,20 +2,20 @@
 
 namespace App\Factory;
 
+use Doctrine\ORM\EntityManager;
 use App\FactoryInterface\UserFactoryInterface;
-use App\EntityInterface\UserInterface;
 use App\Entity\User;
 
 class UserFactory implements UserFactoryInterface {
 
-	protected $userInterface;
+	protected $entityManager;
 	protected $user;
 
 	public function __construct(
-		UserInterface $userInterface, 
+		EntityManager $entityManager, 
 		User $user
 	) {
-		$this->userInterface = $userInterface;
+		$this->entityManager = $entityManager;
 		$this->user = $user;
 	}
 
@@ -25,8 +25,8 @@ class UserFactory implements UserFactoryInterface {
 			$this->user->setEmail($user['email']);
 			$this->user->setPassword($user['password']);
 
-			$this->userInterface->add($this->user);
-			$this->userInterface->getEntityManager()->flush();
+			$this->entityManager->persist($this->user);
+			$this->entityManager->flush();
 		} catch(\Exception $e) {
 			//Log error
 			return false;
