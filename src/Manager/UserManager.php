@@ -32,10 +32,13 @@ class UserManager {
 			];
 		}
 
-		if(!Validator::minLength($user['password'], MIN_PASSWORD_LENGTH) || !Validator::maxLength($user['password'], MAX_PASSWORD_LENGTH)) {
+		if(
+			!Validator::minLength($user['password'], self::MIN_PASSWORD_LENGTH) || 
+			!Validator::maxLength($user['password'], self::MAX_PASSWORD_LENGTH)
+		) {
 			return [
 				'status'  => 'error',
-				'message' => 'Password needs to be between ' . MIN_PASSWORD_LENGTH . ' and' . MAX_PASSWORD_LENGTH
+				'message' => 'Password needs to be between ' . self::MIN_PASSWORD_LENGTH . ' and ' . self::MAX_PASSWORD_LENGTH
 			];
 		}
 
@@ -84,7 +87,7 @@ class UserManager {
 		Session::login([
 			'email' => $user['email']
 		]);
-
+		
 		return true;
 	}
 }
