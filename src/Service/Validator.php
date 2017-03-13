@@ -9,8 +9,13 @@ class Validator {
 		return filter_var($email, FILTER_VALIDATE_EMAIL);
 	}
 
-	public static function minLength($string, $length = 7)
+	public static function minLength($string, $length)
 	{
-		return (strlen($string) >= 7);
+		return (strlen($string) >= $length);
+	}
+
+	public static function maxLength($string, $length)
+	{
+		return (strlen($string) <= $length);
 	}
 }

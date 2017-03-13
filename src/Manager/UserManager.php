@@ -9,6 +9,9 @@ use App\Service\Session;
 
 class UserManager {
 
+	const MIN_PASSWORD_LENGTH = 7;
+	const MAX_PASSWORD_LENGTH = 26;
+
 	protected $userEntityRepository;
 	protected $userFactory;
 
@@ -29,10 +32,10 @@ class UserManager {
 			];
 		}
 
-		if(!Validator::minLength($user['password'], 7)) {
+		if(!Validator::minLength($user['password'], MIN_PASSWORD_LENGTH) || !Validator::maxLength($user['password'], MAX_PASSWORD_LENGTH)) {
 			return [
 				'status'  => 'error',
-				'message' => 'Password is too short.'
+				'message' => 'Password needs to be between ' . MIN_PASSWORD_LENGTH . ' and' . MAX_PASSWORD_LENGTH
 			];
 		}
 
