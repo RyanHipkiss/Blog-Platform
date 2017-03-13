@@ -30,7 +30,7 @@ class UserRepository implements UserInterface {
 			->where('u.email = :email')
 			->setParameter('email', $email)
 			->getQuery()
-			->getSingleResult();
+			->getOneOrNullREsult();
 
 		return $user['password'];
 	}
