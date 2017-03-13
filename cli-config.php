@@ -3,8 +3,8 @@
 require_once 'vendor/autoload.php';
 
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Config\App;
+use App\Bootstrap;
 
-$app = new App;
+$app = new Bootstrap;
 
 return ConsoleRunner::createHelperSet($app->getEntityManager());
