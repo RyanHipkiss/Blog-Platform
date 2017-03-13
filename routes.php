@@ -1,6 +1,5 @@
 <?php
 
-
 $routes = new League\Route\RouteCollection($container);
 
 $routes->group('/auth', function($routes) {

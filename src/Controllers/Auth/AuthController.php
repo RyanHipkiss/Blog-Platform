@@ -19,7 +19,7 @@ class AuthController extends BaseController {
 
 	public function showRegister() 
 	{
-		return $this->getTemplateEngine()->render('auth/register.twig');
+		return $this->getTemplateEngine()->render('auth/register.html');
 	}
 
 	public function postRegister($request, $response) 
@@ -27,12 +27,12 @@ class AuthController extends BaseController {
 		$input = $request->getParsedBody();
 		$registered = $this->userManager->register($input);
 
-		return $this->getTemplateEngine()->render('auth/register.twig', ['message' => $registered]);
+		return $this->getTemplateEngine()->render('auth/register.html', ['message' => $registered]);
 	}
 
 	public function showLogin()
 	{
-		return $this->getTemplateEngine()->render('auth/login.twig');
+		return $this->getTemplateEngine()->render('auth/login.html');
 	}
 
 	public function postLogin($request, $response)
@@ -44,6 +44,6 @@ class AuthController extends BaseController {
 			return Redirect::to($this->redirectPath);
 		}
 
-		return $this->getTemplateEngine()->render('auth/login.twig', ['message' => $logged]);
+		return $this->getTemplateEngine()->render('auth/login.html', ['message' => $logged]);
 	}
 }

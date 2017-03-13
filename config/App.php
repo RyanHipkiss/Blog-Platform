@@ -1,32 +1,15 @@
 <?php
 
-namespace Config;
+return [
+	'app' => [
+		'environment' => 'dev',
+	],
 
-use \Doctrine\ORM\Tools\Setup;
-use \Doctrine\ORM\EntityManager;
-use \Config\DB;
-
-class App {
-
-	private $debug = false;
-
-	public function getEntityManager()
-	{
-		$config  = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src"), true);
-
-		$conn = array(
-		  'driver' => DB::getDriver(),
-		  'host'   => DB::getHost(),
-		  'dbname' => DB::getDatabase(),
-		  'user'   => DB::getUsername(),
-		  'password' => DB::getPassword(),
-		);
-
-		return EntityManager::create($conn, $config);
-	}
-
-	public function getDebug()
-	{
-		return $this->debug;
-	}
-}
+	'database' => [
+		'driver' => 'pdo_mysql',
+		'host'   => '127.0.0.1',
+		'name'   => 'scotchbox',
+		'user'   => 'root',
+		'pass'   => 'root'
+	],
+];
