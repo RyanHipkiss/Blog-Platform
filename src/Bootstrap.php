@@ -15,6 +15,8 @@ class Bootstrap {
 	function __construct()
 	{
 		$this->config = require_once __DIR__ . '/../config/app.php';
+
+		$this->errorHandling();
 	}
 
 	public function getEntityManager()
@@ -58,5 +60,18 @@ class Bootstrap {
 		);
 
 		return $this->builder->build();
+	}
+
+	private function errorHandling()
+	{
+		$error = new \Whoops\Run;
+
+		if('dev' == $this->config['app']['environment']) {
+			$error->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+		} else {
+			$error->pushHandler(new \Whoops\Handler\JsonResponseHandler);
+		}
+
+		return $error->register();
 	}
 }
