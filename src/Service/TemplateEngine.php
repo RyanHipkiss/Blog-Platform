@@ -14,6 +14,23 @@ class TemplateEngine
 		]);
 		
 		$this->engine = $twig;
+
+		$functions = $this->getFunctions();
+
+		if(!empty($functions)) {
+			foreach($functions as $function) {
+				$this->engine->addFunction($function);
+			}
+		}
+	}
+
+	private function getFunctions()
+	{
+		return [
+			new \Twig_SimpleFunction('asset', function($string) {
+				return '/assets/' . $string;
+			})
+		];
 	}
 
 	private function getEngine()

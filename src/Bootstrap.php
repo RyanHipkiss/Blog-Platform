@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use \App\Service\TemplateEngine;
+use \Whoops\Handler\Handler;
 
 class Bootstrap 
 {
@@ -72,9 +73,12 @@ class Bootstrap
 			$error->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 		} else {
 			$error->pushHandler(function($exception, $inspector, $run) {
-				//Need to use the template engine here. Need to refactor Twig out of the Controllers/
-				//Maybe make it a static class?
-				echo TemplateEngine::render('error.html');
+				echo TemplateEngine::render('error.html', [
+					'message' => $exception->getMessage(),
+					'code'    => $exception->getStatusCode()
+				]);
+
+				return Handler::DONE;
 			});
 		}
 
