@@ -1,7 +1,11 @@
-<form method="POST">
-	<input type="email" name="email" placeholder="ryan@ryanhipkiss.co.uk">
-	<input type="password" name="password">
-	<input type="submit" value="Register">
-</form>
+{% extends "base.html" %}
 
-{{ message.message }}
+{% block content %}
+	<form method="POST">
+		<input type="email" name="email" placeholder="ryan@ryanhipkiss.co.uk">
+		<input type="password" name="password">
+		<input type="submit" value="Login">
+	</form>
+
+	{{ message.message }}
+{% endblock %}

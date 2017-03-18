@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.css" integrity="sha256-HvCeSydJNzoSMx62rwDrqUqNt+qU6Uet2Lmqm9+Jg3Y=" crossorigin="anonymous" />
+            <link rel="stylesheet" href="{{ asset('app.min.css') }}">
+            <title>{% block title %}{% endblock %} - Site Name Here</title>
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+
+        {% block footer %}
+        {% endblock %}
+    </body>
+</html>
