@@ -2,11 +2,12 @@
 
 namespace App\Controllers\Auth;
 
-use App\Controllers\BaseController;
 use App\Manager\UserManager;
 use App\Service\Redirect;
+use App\Service\TemplateEngine;
 
-class AuthController extends BaseController {
+class AuthController 
+{
 
 	protected $userManager;
 
@@ -19,7 +20,7 @@ class AuthController extends BaseController {
 
 	public function showRegister() 
 	{
-		return $this->getTemplateEngine()->render('auth/register.html');
+		return TemplateEngine::render('auth/register.html');
 	}
 
 	public function postRegister($request, $response) 
@@ -27,12 +28,12 @@ class AuthController extends BaseController {
 		$input = $request->getParsedBody();
 		$registered = $this->userManager->register($input);
 
-		return $this->getTemplateEngine()->render('auth/register.html', ['message' => $registered]);
+		return TemplateEngine::render('auth/register.html', ['message' => $registered]);
 	}
 
 	public function showLogin()
 	{
-		return $this->getTemplateEngine()->render('auth/login.html');
+		return TemplateEngine::render('auth/login.html');
 	}
 
 	public function postLogin($request, $response)
@@ -44,6 +45,6 @@ class AuthController extends BaseController {
 			return Redirect::to($this->redirectPath);
 		}
 
-		return $this->getTemplateEngine()->render('auth/login.html', ['message' => $logged]);
+		return TemplateEngine::render('auth/login.html', ['message' => $logged]);
 	}
 }

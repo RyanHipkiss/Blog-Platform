@@ -7,7 +7,8 @@ use App\FactoryInterface\UserFactoryInterface;
 use App\Service\Validator;
 use App\Service\Session;
 
-class UserManager {
+class UserManager 
+{
 
 	const MIN_PASSWORD_LENGTH = 7;
 	const MAX_PASSWORD_LENGTH = 26;

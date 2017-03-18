@@ -2,7 +2,8 @@
 
 namespace App\Service;
 
-class Validator {
+class Validator 
+{
 
 	public static function email($email)
 	{

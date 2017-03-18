@@ -6,7 +6,8 @@ use Doctrine\ORM\EntityManager;
 use App\FactoryInterface\UserFactoryInterface;
 use App\Entity\User;
 
-class UserFactory implements UserFactoryInterface {
+class UserFactory implements UserFactoryInterface 
+{
 
 	protected $entityManager;
 	protected $user;

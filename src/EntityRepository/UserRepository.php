@@ -6,7 +6,8 @@ use Doctrine\ORM\EntityManager;
 use App\EntityInterface\UserInterface;
 use App\Entity\User;
 
-class UserRepository implements UserInterface {
+class UserRepository implements UserInterface 
+{
 
 	protected $entityManager;
 

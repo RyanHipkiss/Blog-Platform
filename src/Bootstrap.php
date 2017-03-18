@@ -6,8 +6,11 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use \App\Service\TemplateEngine;
+use \Whoops\Handler\Handler;
 
-class Bootstrap {
+class Bootstrap 
+{
 	
 	private $config = [];
 	private $builder;
@@ -15,6 +18,8 @@ class Bootstrap {
 	function __construct()
 	{
 		$this->config = require_once __DIR__ . '/../config/app.php';
+
+		$this->errorHandling();
 	}
 
 	public function getEntityManager()
@@ -58,5 +63,25 @@ class Bootstrap {
 		);
 
 		return $this->builder->build();
+	}
+
+	private function errorHandling()
+	{
+		$error = new \Whoops\Run;
+
+		if('dev' == $this->config['app']['environment']) {
+			$error->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+		} else {
+			$error->pushHandler(function($exception, $inspector, $run) {
+				echo TemplateEngine::render('error.html', [
+					'message' => $exception->getMessage(),
+					'code'    => $exception->getStatusCode()
+				]);
+
+				return Handler::DONE;
+			});
+		}
+
+		return $error->register();
 	}
 }
