@@ -6,8 +6,10 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use \App\Service\TemplateEngine;
 
-class Bootstrap {
+class Bootstrap 
+{
 	
 	private $config = [];
 	private $builder;
@@ -69,7 +71,11 @@ class Bootstrap {
 		if('dev' == $this->config['app']['environment']) {
 			$error->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 		} else {
-			$error->pushHandler(new \Whoops\Handler\JsonResponseHandler);
+			$error->pushHandler(function($exception, $inspector, $run) {
+				//Need to use the template engine here. Need to refactor Twig out of the Controllers/
+				//Maybe make it a static class?
+				echo TemplateEngine::render('error.html');
+			});
 		}
 
 		return $error->register();
