@@ -29,6 +29,9 @@ class TemplateEngine
 		return [
 			new \Twig_SimpleFunction('asset', function($string) {
 				return '/assets/' . $string;
+			}),
+			new \Twig_SimpleFunction('route', function($string) {
+				return \App\Service\Router::getUriFromName($string);
 			})
 		];
 	}

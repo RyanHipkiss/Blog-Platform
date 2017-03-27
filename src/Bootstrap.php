@@ -14,6 +14,7 @@ class Bootstrap
 	
 	private $config = [];
 	private $builder;
+	private $router;
 
 	function __construct()
 	{
@@ -47,7 +48,8 @@ class Bootstrap
 		        'request' => function () {
 		            return \Zend\Diactoros\ServerRequestFactory::fromGlobals(
 		                $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-		            );
+		         
+				    );
 		        },
 
 		        'emitter' => \DI\object(\Zend\Diactoros\Response\SapiEmitter::class),
