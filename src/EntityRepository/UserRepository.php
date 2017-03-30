@@ -8,17 +8,15 @@ use App\Entity\User;
 
 class UserRepository implements UserInterface 
 {
-
-	protected $entityManager;
-
-	public function __construct(EntityManager $entityManager)
+	protected $em;
+	public function __construct(EntityManager $em)
 	{
-		$this->entityManager = $entityManager;
+		$this->em = $em;
 	}
 
 	public function getEntityManager()
 	{
-		return $this->entityManager;
+		return $this->em;
 	}
 
 	public function getPasswordByEmail($email)

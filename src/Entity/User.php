@@ -25,7 +25,17 @@ class User
 	 * @Column(type="string", length=255, nullable=false)
 	 **/
 	protected $password;
-		
+
+	/**
+	 * @ManyToMany(targetEntity="Role", inversedBy="users")
+	 * @JoinTable(name="user_to_roles")
+	 **/	
+	protected $roles;
+
+	public function __construct()
+	{
+		$this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
 	public function getEmail()
 	{
@@ -45,5 +55,16 @@ class User
 	public function setPassword($password)
 	{
 		$this->password = password_hash($password, PASSWORD_BCRYPT);
+	}
+
+	public function addRole(Role $role)
+	{
+		$role->addUser($this);
+		$this->roles[] = $role;
+	}
+
+	public function getRoles()
+	{
+		return $this->roles;
 	}
 }
