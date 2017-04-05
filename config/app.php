@@ -9,7 +9,7 @@ return [
 	'database' => [
 		'driver' => 'pdo_mysql',
 		'host'   => '127.0.0.1',
-		'name'   => 'scotchbox',
+		'name'   => 'doctrine',
 		'user'   => 'root',
 		'pass'   => 'root'
 	],

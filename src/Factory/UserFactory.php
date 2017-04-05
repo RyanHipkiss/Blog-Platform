@@ -5,6 +5,7 @@ namespace App\Factory;
 use Doctrine\ORM\EntityManager;
 use App\FactoryInterface\UserFactoryInterface;
 use App\Entity\User;
+use App\Service\Logger;
 
 class UserFactory implements UserFactoryInterface 
 {
@@ -29,7 +30,7 @@ class UserFactory implements UserFactoryInterface
 			$this->entityManager->persist($this->user);
 			$this->entityManager->flush();
 		} catch(\Exception $e) {
-			//Log error
+			Logger::send($e->getMessage());
 			return false;
 		}
 
