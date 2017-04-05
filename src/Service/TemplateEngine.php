@@ -32,6 +32,9 @@ class TemplateEngine
 			}),
 			new \Twig_SimpleFunction('route', function($string) {
 				return \App\Service\Router::getUriFromName($string);
+			}),
+			new \Twig_SimpleFunction('csrf', function() {
+				return \App\Service\Session::generateCsrf();
 			})
 		];
 	}
