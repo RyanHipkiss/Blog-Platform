@@ -11,6 +11,7 @@
         "php-di/php-di": "^5.4",
         "twig/twig": "~1.32",
         "filp/whoops": "^2.1",
-        "league/route": "3.0.0"
+        "league/route": "3.0.0",
+        "phpmailer/phpmailer": "^5.2"
     }
 }
