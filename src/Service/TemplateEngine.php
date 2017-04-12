@@ -35,6 +35,9 @@ class TemplateEngine
 			}),
 			new \Twig_SimpleFunction('csrf', function() {
 				return \App\Service\Session::generateCsrf();
+			}),
+			new \Twig_SimpleFunction('recaptcha', function() {
+				return \App\Service\Recaptcha::getSiteKey();
 			})
 		];
 	}

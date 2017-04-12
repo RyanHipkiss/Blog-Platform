@@ -13,4 +13,9 @@ return [
 		'user'   => 'root',
 		'pass'   => 'root'
 	],
+
+	'recaptcha' => [
+		'siteKey'   => '',
+		'secretKey' => ''
+	],
 ];
