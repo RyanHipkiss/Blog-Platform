@@ -12,7 +12,7 @@ class TemplateEngine
 		$twig = new \Twig_Environment($twig, [
 			'cache' => false
 		]);
-		
+
 		$this->engine = $twig;
 
 		$functions = $this->getFunctions();
@@ -54,7 +54,7 @@ class TemplateEngine
 		$response->getBody()->write(
 			$engine->getEngine()->render($template, $viewData)
 		);
-		
+
 		return $response;
 	}
 }

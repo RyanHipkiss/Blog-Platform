@@ -4,15 +4,19 @@ namespace App\Service;
 
 class Router
 {
-    private static $routes;
+    private static $router = null;
 
-    public static function setRoutes($routes)
+    public static function setup(\League\Route\RouteCollection $router)
     {
-        self::$routes = $routes;
+        if(self::$router === null) {
+            self::$router = $router;
+        }
+
+        return self::$router;
     }
 
     public static function getUriFromName($name)
     {
-        return self::$routes->getNamedRoute($name)->getPath();
+        return self::$router->getNamedRoute($name)->getPath();
     }
 }
