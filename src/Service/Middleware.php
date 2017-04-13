@@ -15,7 +15,16 @@ class Middleware
         if(empty(Session::user())) {
             Redirect::to(Router::getUriFromName('login'));
         }
-        
+
+        return $next($request, $response);
+    }
+
+    public function notLoggedIn(ServerRequestInterface $request, ResponseInterface $response, callable $next)
+    {
+        if(!empty(Session::user())) {
+            Redirect::to(Router::getUriFromName('dashboard'));
+        }
+
         return $next($request, $response);
     }
 }

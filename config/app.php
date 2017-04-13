@@ -8,10 +8,10 @@ return [
 
 	'database' => [
 		'driver' => 'pdo_mysql',
-		'host'   => '127.0.0.1',
-		'name'   => 'scotchbox',
-		'user'   => 'root',
-		'pass'   => 'root'
+		'host'   => '192.168.1.220',
+		'name'   => 'testing',
+		'user'   => 'wmm',
+		'pass'   => 'wmmuser589'
 	],
 
 	'recaptcha' => [
