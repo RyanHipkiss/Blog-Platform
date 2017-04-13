@@ -13,7 +13,7 @@ $routes->group('/auth', function($routes) {
 	$routes->post('/login', 'App\Controllers\Auth\AuthController::postLogin');
 });
 
-$routes->get('/', 'App\Controllers\ExampleController::middleware')->setName('home');
+$routes->get('/', '')->setName('home');
 
 $response = $routes->dispatch($container->get('request'), $container->get('response'));
 

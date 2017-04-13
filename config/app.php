@@ -2,7 +2,7 @@
 
 return [
 	'app' => [
-		'environment' => 'dev',
+		'environment' => 'prod',
 		'log_send_mail' => true
 	],
 
