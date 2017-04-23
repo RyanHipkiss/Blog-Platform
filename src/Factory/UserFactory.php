@@ -26,7 +26,7 @@ class UserFactory implements UserFactoryInterface
 		try {
 			$this->user->setEmail($user['email']);
 			$this->user->setPassword($user['password']);
-
+			
 			$this->entityManager->persist($this->user);
 			$this->entityManager->flush();
 		} catch(\Exception $e) {

@@ -3,5 +3,5 @@
 namespace App\EntityInterface;
 
 interface UserInterface {
-	public function getPasswordByEmail($email);
+	public function findByEmail($email);
 }

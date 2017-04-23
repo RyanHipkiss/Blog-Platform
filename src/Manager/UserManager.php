@@ -73,9 +73,9 @@ class UserManager
 			];
 		}
 
-		$password = $this->userEntityRepository->getPasswordByEmail($user['email']);
-
-		$match = password_verify($user['password'], $password);
+		$foundUser = $this->userEntityRepository->findByEmail($user['email']);
+	
+		$match = password_verify($user['password'], $foundUser->getPassword());
 
 		if(!$match) {
 			return [

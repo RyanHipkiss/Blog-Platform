@@ -15,3 +15,6 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryan
 [13th Apr 2017 - 08:23:55] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["resources@ryanhipkiss.co.uk", "$2y$10$OKtbrtb0hPIeSm4xZJGzu.uROmTCSVEEYEFrvDeaVIsGZSkHbwvdG"]:
 
 SQLSTATE[42S02]: Base table or view not found: 1146 Table 'scotchbox.User' doesn't exist
+[23rd Apr 2017 - 15:35:23] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["ryan@ryanhipkiss.co.uk", "$2y$10$Sm0Y8x0MBVHFcQi2pYj4bu3aFjv8eBRcaERgVz8eq31g2B8r6bmDS"]:
+
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryanhipkiss.co.uk' for key 'UNIQ_2DA17977E7927C74'
