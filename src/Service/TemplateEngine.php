@@ -47,14 +47,10 @@ class TemplateEngine
 		return $this->engine;
 	}
 
-	public static function render($response, $template, array $viewData = [])
+	public static function render($template, array $viewData = [])
 	{
 		$engine = new static();
 
-		$response->getBody()->write(
-			$engine->getEngine()->render($template, $viewData)
-		);
-
-		return $response;
+		return $engine->getEngine()->render($template, $viewData);
 	}
 }
