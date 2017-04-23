@@ -11,6 +11,10 @@ class Session {
 
 	public static function user()
 	{
+		if(!isset($_SESSION['user'])) {
+			return [];
+		}
+		
 		return $_SESSION['user'];
 	}
 

@@ -10,3 +10,8 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryan
 [5th Apr 2017 - 21:57:37] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["ryan@ryanhipkiss.co.uk", "$2y$10$0X83tdyP1pRln34x12Myse3Xlho6h40RXm\/.wyM3VkftMbbn.e4Ii"]:
 
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryanhipkiss.co.uk' for key 'UNIQ_2DA17977E7927C74'
+[12th Apr 2017 - 19:47:11] An exception occured in driver: SQLSTATE[HY000] [1049] Unknown database 'doctrine'
+[12th Apr 2017 - 19:47:19] An exception occured in driver: SQLSTATE[HY000] [1049] Unknown database 'doctrine'
+[13th Apr 2017 - 08:23:55] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["resources@ryanhipkiss.co.uk", "$2y$10$OKtbrtb0hPIeSm4xZJGzu.uROmTCSVEEYEFrvDeaVIsGZSkHbwvdG"]:
+
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'scotchbox.User' doesn't exist

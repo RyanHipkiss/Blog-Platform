@@ -12,7 +12,7 @@ class TemplateEngine
 		$twig = new \Twig_Environment($twig, [
 			'cache' => false
 		]);
-		
+
 		$this->engine = $twig;
 
 		$functions = $this->getFunctions();
@@ -35,6 +35,9 @@ class TemplateEngine
 			}),
 			new \Twig_SimpleFunction('csrf', function() {
 				return \App\Service\Session::generateCsrf();
+			}),
+			new \Twig_SimpleFunction('recaptcha', function() {
+				return \App\Service\Recaptcha::getSiteKey();
 			})
 		];
 	}
@@ -44,9 +47,14 @@ class TemplateEngine
 		return $this->engine;
 	}
 
-	public static function render($template, array $viewData = [])
+	public static function render($response, $template, array $viewData = [])
 	{
 		$engine = new static();
-		return $engine->getEngine()->render($template, $viewData);
+
+		$response->getBody()->write(
+			$engine->getEngine()->render($template, $viewData)
+		);
+
+		return $response;
 	}
 }

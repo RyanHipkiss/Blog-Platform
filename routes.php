@@ -1,18 +1,20 @@
 <?php
 
 use \App\Service\Router;
+use \App\Service\Middleware;
 
-$routes = new League\Route\RouteCollection($container);
+$routes = Router::setup(new \League\Route\RouteCollection($container));
 
 $routes->group('/auth', function($routes) {
-	$routes->get('/register', 'App\Controllers\Auth\AuthController::showRegister')->setName('register');
+    $routes->get('/register', 'App\Controllers\Auth\AuthController::showRegister')->setName('register');
 	$routes->post('/register', 'App\Controllers\Auth\AuthController::postRegister');
 
-	$routes->get('/login', 'App\Controllers\Auth\AuthController::showLogin');
+	$routes->get('/login', 'App\Controllers\Auth\AuthController::showLogin')->setName('login');
 	$routes->post('/login', 'App\Controllers\Auth\AuthController::postLogin');
 });
 
-Router::setRoutes($routes);
+$routes->get('/', '')->setName('home');
+
 $response = $routes->dispatch($container->get('request'), $container->get('response'));
 
 $container->get('emitter')->emit($response);

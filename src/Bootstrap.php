@@ -9,9 +9,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use \App\Service\TemplateEngine;
 use \Whoops\Handler\Handler;
 
-class Bootstrap 
+class Bootstrap
 {
-	
+
 	private $config = [];
 	private $builder;
 	private $router;
@@ -43,12 +43,12 @@ class Bootstrap
 		$this->builder = new \DI\ContainerBuilder;
 		$this->builder->addDefinitions(
 			[
-				'response' => \DI\object(\Zend\Diactoros\Response::class), 
+				'response' => \DI\object(\Zend\Diactoros\Response::class),
 
 		        'request' => function () {
 		            return \Zend\Diactoros\ServerRequestFactory::fromGlobals(
 		                $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-		         
+
 				    );
 		        },
 
@@ -76,7 +76,7 @@ class Bootstrap
 		} else {
 			$error->pushHandler(function($exception, $inspector, $run) {
 				echo TemplateEngine::render('error.html', [
-					'message' => $exception->getMessage(),
+					'message' => 'Whoops! An error has occured.',
 					'code'    => $exception->getStatusCode()
 				]);
 

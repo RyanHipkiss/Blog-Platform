@@ -6,7 +6,7 @@ use App\Manager\UserManager;
 use App\Service\Redirect;
 use App\Service\TemplateEngine;
 
-class AuthController 
+class AuthController
 {
 
 	protected $userManager;
@@ -18,33 +18,33 @@ class AuthController
 		$this->userManager = $userManager;
 	}
 
-	public function showRegister() 
+	public function showRegister($request, $response, $args)
 	{
-		return TemplateEngine::render('auth/register.html');
+		return TemplateEngine::render($response, 'auth/register.html');
 	}
 
-	public function postRegister($request, $response) 
+	public function postRegister($request, $response)
 	{
 		$input = $request->getParsedBody();
 		$registered = $this->userManager->register($input);
 
-		return TemplateEngine::render('auth/register.html', ['message' => $registered]);
+		return TemplateEngine::render($response, 'auth/register.html', ['message' => $registered]);
 	}
 
-	public function showLogin()
+	public function showLogin($request, $response, $args)
 	{
-		return TemplateEngine::render('auth/login.html');
+		return TemplateEngine::render($response, 'auth/login.html');
 	}
 
 	public function postLogin($request, $response)
 	{
 		$input  = $request->getParsedBody();
 		$logged = $this->userManager->login($input);
-		
+
 		if(true === $logged) {
 			return Redirect::to($this->redirectPath);
 		}
 
-		return TemplateEngine::render('auth/login.html', ['message' => $logged]);
+		return TemplateEngine::render($response, 'auth/login.html', ['message' => $logged]);
 	}
 }
