@@ -58,9 +58,9 @@ class Bootstrap
 		            return $this->getEntityManager();
 		        },
 
-		        \App\EntityInterface\UserInterface::class => \DI\object(\App\EntityRepository\UserRepository::class),
-
 		        \App\FactoryInterface\UserFactoryInterface::class => \DI\object(\App\Factory\UserFactory::class),
+				\App\FactoryInterface\RoleFactoryInterface::class => \DI\object(\App\Factory\RoleFactory::class),
+
 			]
 		);
 

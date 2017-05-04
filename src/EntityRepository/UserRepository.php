@@ -2,23 +2,12 @@
 
 namespace App\EntityRepository;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use App\EntityInterface\UserInterface;
 use App\Entity\User;
 
-class UserRepository implements UserInterface 
+class UserRepository extends EntityRepository implements UserInterface 
 {
-	protected $em;
-	public function __construct(EntityManager $em)
-	{
-		$this->em = $em;
-	}
-
-	public function getEntityManager()
-	{
-		return $this->em;
-	}
-
 	public function findByEmail($email)
 	{
 		$query = $this->getEntityManager()->createQueryBuilder();

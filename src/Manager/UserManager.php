@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\EntityInterface\UserInterface;
+use Doctrine\ORM\EntityManager;
 use App\FactoryInterface\UserFactoryInterface;
 use App\Service\Validator;
 use App\Service\Session;
@@ -12,15 +12,15 @@ class UserManager
 	const MIN_PASSWORD_LENGTH = 7;
 	const MAX_PASSWORD_LENGTH = 26;
 
-	protected $userEntityRepository;
+	protected $entityManager;
 	protected $userFactory;
 
 	public function __construct(
-		UserInterface $userEntityRepository,
+		EntityManager $entityManager,
 		UserFactoryInterface $userFactory
 	) {
-		$this->userEntityRepository = $userEntityRepository;
-		$this->userFactory = $userFactory;
+		$this->entityManager = $entityManager;
+		$this->userFactory   = $userFactory;
 	}
 
 	public function register(array $user)
@@ -73,7 +73,7 @@ class UserManager
 			];
 		}
 
-		$foundUser = $this->userEntityRepository->findByEmail($user['email']);
+		$foundUser = $this->entityManager->getRepository('App\Entity\User')->findByEmail($user['email']);
 	
 		$match = password_verify($user['password'], $foundUser->getPassword());
 

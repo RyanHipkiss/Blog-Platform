@@ -4,7 +4,6 @@ namespace App\Controllers\Auth;
 
 use App\Manager\UserManager;
 use App\Service\Redirect;
-use App\Service\TemplateEngine;
 use App\Controllers\Controller;
 
 class AuthController extends Controller
