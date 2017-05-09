@@ -32,8 +32,6 @@ $routes->group('/admin', function($routes) {
 	$routes->post('/roles/add', 'App\Controllers\Backend\RolesController::edit');
 })->middleware([new Middleware, 'loggedIn']);
 
-$routes->get('/', '')->setName('home');
-
 $response = $routes->dispatch($container->get('request'), $container->get('response'));
 
 $container->get('emitter')->emit($response);

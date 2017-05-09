@@ -4,6 +4,7 @@ namespace App\Controllers\Backend;
 
 use App\Controllers\Controller;
 use App\Manager\RoleManager;
+use App\Service\Redirect;
 
 class RolesController extends Controller
 {
@@ -32,9 +33,15 @@ class RolesController extends Controller
 
     public function edit($request, $response, $args)
     {
-       $input = $request->getParsedBody();
-       $notify = $this->roleManager->save($input, $args['id']);
-       //show the message & then the message perhaps?
-       return $this->render($response, 'admin/role/single.html', ['notify' => $notify]);
+        $input = $request->getParsedBody();
+        $notify = $this->roleManager->save($input, (!empty($args['id'])) ? $args['id'] : null);
+
+        echo '<pre>';
+
+        if('error' == $notify['status']) {
+            return $this->render($response, 'admin/role/single.html', ['notify' => $notify]);
+        }
+
+        return Redirect::to('/admin/roles/edit/' . $notify['id']);
     }
 }

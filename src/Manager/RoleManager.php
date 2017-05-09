@@ -30,7 +30,12 @@ class RoleManager
         return $this->entityManager->getRepository('App\Entity\Role')->findOneById($id);
     }
 
-    public function save(array $input, $roleID)
+    public function findByName($name)
+    {
+        return $this->entityManager->getRepository('App\Entity\Role')->findOneByName($name);
+    }
+
+    public function save(array $input, $roleID = null)
     {
         if(!Validator::minLength($input['name'], 1)) {
             return [
@@ -40,9 +45,35 @@ class RoleManager
         }
 
         if(empty($roleID)) {
-            return $this->roleFactory->create($input);
+            $created = $this->roleFactory->create($input);
+
+            if($created) {
+                return [
+                    'status'      => 'success',
+                    'message' => 'Role created successfully',
+                    'id' => $this->findByName($input['name'])->getId()
+                ];
+            }
+
+            return [
+                'status'      => 'error',
+                'message' => 'Error creating role.'
+            ];
         }
 
-        return $this->roleFactory->update($input, $roleID);
+        $updated = $this->roleFactory->update($input, $roleID);
+
+        if($updated) {
+            return [
+                'status'      => 'success',
+                'message' => 'Role updated successfully',
+                'id' => $this->findByName($input['name'])->getId()
+            ];
+        }
+
+        return [
+            'status'      => 'error',
+            'message' => 'Error updating role.'
+        ];
     }
 }

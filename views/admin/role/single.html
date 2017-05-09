@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<form method="POST" class="small-4 small-offset-4" style="margin-top: 15px;">
+	<form method="POST">
+        <h1>Create a role</h1>
         <input type="text" name="name" value="{{ role.name }}" placeholder="Name">
         <input type="submit" value="Save">
     </form>
+
+    {{ notify.message }}
 {% endblock %}
