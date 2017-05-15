@@ -47,7 +47,7 @@ class RolesController extends Controller
 
     public function delete($request, $response, $args)
     {
-        $this->roleManager->delete($args['id']);
+        $deleted = $this->roleManager->delete($args['id']);
 
         return Redirect::to('/admin/roles/all');
     }
