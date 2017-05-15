@@ -44,4 +44,11 @@ class RolesController extends Controller
 
         return Redirect::to('/admin/roles/edit/' . $notify['id']);
     }
+
+    public function delete($request, $response, $args)
+    {
+        $this->roleManager->delete($args['id']);
+
+        return Redirect::to('/admin/roles/all');
+    }
 }

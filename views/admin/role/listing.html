@@ -4,7 +4,10 @@
     {% if roles %}
         <ul>
             {% for role in roles %}
-                <li><a href="{{ route('admin.role', { 'id' : role.id }) }}">{{ role.name }}</a></li>
+                <li>
+                    <a href="{{ route('admin.role', { 'id' : role.id }) }}">{{ role.name }}</a>
+                    <a href="{{ route('admin.role.delete', {'id': role.id }) }}">Delete</a>
+                </li>
             {% endfor %}
         </ul>
     {% endif %}

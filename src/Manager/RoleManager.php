@@ -49,14 +49,14 @@ class RoleManager
 
             if($created) {
                 return [
-                    'status'      => 'success',
+                    'status'  => 'success',
                     'message' => 'Role created successfully',
                     'id' => $this->findByName($input['name'])->getId()
                 ];
             }
 
             return [
-                'status'      => 'error',
+                'status'  => 'error',
                 'message' => 'Error creating role.'
             ];
         }
@@ -65,15 +65,31 @@ class RoleManager
 
         if($updated) {
             return [
-                'status'      => 'success',
+                'status'  => 'success',
                 'message' => 'Role updated successfully',
                 'id' => $this->findByName($input['name'])->getId()
             ];
         }
 
         return [
-            'status'      => 'error',
+            'status'  => 'error',
             'message' => 'Error updating role.'
+        ];
+    }
+
+    public function delete($id) {
+        $deleted = $this->roleFactory->delete($id);
+
+        if(!$deleted) {
+            return [
+                'status'  => 'error',
+                'message' => 'Sorry, there was an error deleting your role.'
+            ];
+        }
+
+        return [
+            'status'  => 'success',
+            'message' => 'Role deleted successfully'
         ];
     }
 }

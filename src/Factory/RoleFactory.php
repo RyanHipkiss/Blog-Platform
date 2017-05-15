@@ -52,4 +52,18 @@ class RoleFactory implements RoleFactoryInterface
 
 		return true;
 	}
+
+	public function delete($id)
+	{
+		try {
+			$role = $this->entityManager->getReference('App\Entity\Role', $id);
+			$this->entityManager->remove($role);
+			$this->entityManager->flush();
+		} catch(\Exception $e) {
+			Logger::send($e->getMessage());
+			return false;
+		}
+
+		return true;
+	}
 }
