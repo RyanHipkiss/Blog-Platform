@@ -31,9 +31,7 @@ class TemplateEngine
 				return '/assets/' . $string;
 			}),
 			new \Twig_SimpleFunction('route', function($string, array $arguments = null) {
-				$path = \App\Service\Router::getUriFromName($string);
-
-				return $path;
+				return \App\Service\Router::getUriFromName($string, $arguments);
 			}),
 			new \Twig_SimpleFunction('csrf', function() {
 				return \App\Service\Session::generateCsrf();

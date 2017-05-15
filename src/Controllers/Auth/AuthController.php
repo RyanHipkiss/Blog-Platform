@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
 	protected $userManager;
 
-	private $redirectPath = '/';
+	private $redirectPath = '/admin';
 
 	public function __construct(UserManager $userManager)
 	{
