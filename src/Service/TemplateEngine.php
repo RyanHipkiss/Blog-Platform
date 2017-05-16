@@ -38,6 +38,9 @@ class TemplateEngine
 			}),
 			new \Twig_SimpleFunction('recaptcha', function() {
 				return \App\Service\Recaptcha::getSiteKey();
+			}),
+			new \Twig_SimpleFunction('auth', function() {
+				return (!empty(\App\Service\Session::user()));
 			})
 		];
 	}

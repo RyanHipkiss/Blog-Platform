@@ -13,7 +13,7 @@ class Middleware
     public function loggedIn(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         if(empty(Session::user())) {
-            Redirect::to(Router::getUriFromName('login'));
+            Redirect::to(Router::getUriFromName('auth.login'));
         }
 
         return $next($request, $response);
@@ -22,7 +22,7 @@ class Middleware
     public function notLoggedIn(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         if(!empty(Session::user())) {
-            Redirect::to(Router::getUriFromName('dashboard'));
+            Redirect::to(Router::getUriFromName('admin.index'));
         }
 
         return $next($request, $response);

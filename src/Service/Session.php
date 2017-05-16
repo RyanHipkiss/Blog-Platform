@@ -9,6 +9,11 @@ class Session {
 		$_SESSION['user'] = $user;
 	}
 
+	public static function logout()
+	{
+		unset($_SESSION['user']);
+	}
+
 	public static function user()
 	{
 		if(!isset($_SESSION['user'])) {

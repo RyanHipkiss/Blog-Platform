@@ -46,4 +46,11 @@ class AuthController extends Controller
 
 		return $this->render($response, 'auth/login.html', ['message' => $logged]);	
 	}
+
+	public function logout($request, $response)
+	{
+		$logout = $this->userManager->logout();
+
+		return Redirect::to('/');
+	}
 }

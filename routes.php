@@ -10,12 +10,14 @@ $routes = Router::setup(new \League\Route\RouteCollection($container));
  **/
 
 $routes->group('/auth', function($routes) {
-    $routes->get('/register', 'App\Controllers\Auth\AuthController::showRegister')->setName('register');
+    $routes->get('/register', 'App\Controllers\Auth\AuthController::showRegister')->setName('auth.register');
 	$routes->post('/register', 'App\Controllers\Auth\AuthController::postRegister');
 
-	$routes->get('/login', 'App\Controllers\Auth\AuthController::showLogin')->setName('login');
+	$routes->get('/login', 'App\Controllers\Auth\AuthController::showLogin')->setName('auth.login');
 	$routes->post('/login', 'App\Controllers\Auth\AuthController::postLogin');
-});
+
+	$routes->get('/logout', 'App\Controllers\Auth\AuthController::logout')->setName('auth.logout');
+})->middleware([new Middleware, 'notLoggedIn']);
 
 /**
  * Back End (Admin)
