@@ -19,7 +19,7 @@ class RolesController extends Controller
     public function show($request, $response, $args)
     {
         $roles = $this->roleManager->findAll();
-        return $this->render($response, 'admin/role/listing.html', ['roles' => $roles]);
+        return $this->render($response, 'admin/role/listing.html', ['roles' => $roles, 'notify' => Session::getNotify()]);
     }
 
     public function view($request, $response, $args)

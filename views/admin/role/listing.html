@@ -11,5 +11,7 @@
             {% endfor %}
         </ul>
     {% endif %}
+
+    {{ notify.message }}
     <a href="{{ route('admin.role.add') }}">Create role</a>
 {% endblock %}
