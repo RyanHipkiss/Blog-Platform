@@ -20,3 +20,4 @@ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'scotchbox.User' doesn
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryanhipkiss.co.uk' for key 'UNIQ_2DA17977E7927C74'
 [15th May 2017 - 19:42:38] EntityManager#remove() expects parameter 1 to be an entity object, string given.
 [15th May 2017 - 19:42:42] EntityManager#remove() expects parameter 1 to be an entity object, string given.
+[16th May 2017 - 19:15:48] An exception occured in driver: SQLSTATE[HY000] [1049] Unknown database 'doctrine'

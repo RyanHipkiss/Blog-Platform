@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 
 {% block content %}
     {% if roles %}
@@ -11,4 +11,5 @@
             {% endfor %}
         </ul>
     {% endif %}
+    <a href="{{ route('admin.role.add') }}">Create role</a>
 {% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <link rel="stylesheet" href="https://cdn.rawgit.com/yegor256/tacit/gh-pages/tacit-0.8.1.min.css" />
+            <link rel="stylesheet" href="{{ asset('app.min.css') }}">
+            <title>{% block title %}{% endblock %} - Site Name Here</title>
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+
+        {% block footer %}
+        {% endblock %}
+    </body>
+</html>

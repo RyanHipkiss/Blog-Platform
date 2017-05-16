@@ -15,7 +15,7 @@ class Router
         return self::$router;
     }
 
-    public static function getUriFromName($name, array $arguments)
+    public static function getUriFromName($name, array $arguments = null)
     {
         $path = self::$router->getNamedRoute($name)->getPath();
 

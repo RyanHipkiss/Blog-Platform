@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 
 {% block content %}
 	<form method="POST">
@@ -8,4 +8,6 @@
     </form>
 
     {{ notify.message }}
+
+    <a href="{{ route('admin.roles') }}">Back to roles</a>
 {% endblock %}
