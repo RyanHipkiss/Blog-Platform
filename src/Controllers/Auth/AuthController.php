@@ -10,8 +10,6 @@ class AuthController extends Controller
 {
 	protected $userManager;
 
-	private $redirectPath = '/admin';
-
 	public function __construct(UserManager $userManager)
 	{
 		$this->userManager = $userManager;
@@ -41,7 +39,7 @@ class AuthController extends Controller
 		$logged = $this->userManager->login($input);
 
 		if(true === $logged) {
-			return Redirect::to($this->redirectPath);
+			return Redirect::route('admin.index');
 		}
 
 		return $this->render($response, 'auth/login.html', ['message' => $logged]);	
@@ -51,6 +49,6 @@ class AuthController extends Controller
 	{
 		$logout = $this->userManager->logout();
 
-		return Redirect::to('/');
+		return Redirect::route('index');
 	}
 }

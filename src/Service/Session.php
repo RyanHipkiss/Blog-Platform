@@ -42,4 +42,14 @@ class Session {
 	{
 		return hash_equals($_SESSION['token'], $token);
 	}
+
+	public static function getNotify()
+	{
+		return $_SESSION['notify'];
+	}
+
+	public static function setNotify(array $data)
+	{
+		$_SESSION['notify'] = $data;
+	}
 }
