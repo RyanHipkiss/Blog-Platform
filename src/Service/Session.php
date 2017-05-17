@@ -45,7 +45,7 @@ class Session {
 
 	public static function getNotify()
 	{
-		return $_SESSION['notify'];
+		return (isset($_SESSION['notify'])) ? $_SESSION['notify'] : [];
 	}
 
 	public static function setNotify(array $data)
