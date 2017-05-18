@@ -1,4 +1,3 @@
 Vagrantfile
-vendor/
 .phpintel/
 .vagrant
