@@ -25,8 +25,9 @@ class Role
      **/
     protected $users;
 
-    public function __construct()
+    public function __construct($name)
     {
+        $this->setName($name);
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -48,5 +49,10 @@ class Role
     public function addUser(User $user)
     {
         $this->users[] = $user;
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

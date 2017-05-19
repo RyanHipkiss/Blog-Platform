@@ -32,8 +32,10 @@ class User
 	 **/	
 	protected $roles;
 
-	public function __construct()
+	public function __construct($email, $password)
 	{
+		$this->setEmail($email);
+		$this->setPassword($password);
 		$this->roles = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 

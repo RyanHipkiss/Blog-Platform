@@ -9,24 +9,20 @@ use App\Service\Logger;
 
 class RoleFactory implements RoleFactoryInterface 
 {
-
 	protected $entityManager;
-	protected $role;
 
 	public function __construct(
-		EntityManager $entityManager, 
-		Role $role
+		EntityManager $entityManager
 	) {
 		$this->entityManager = $entityManager;
-		$this->role = $role;
 	}
 
 	public function create(array $input)
 	{
 		try {
-			$this->role->setName($input['name']);
+			$role = new Role($input['name']);
 			
-			$this->entityManager->persist($this->role);
+			$this->entityManager->persist($role);
 			$this->entityManager->flush();
 		} catch(\Exception $e) {
 			Logger::send($e->getMessage());
