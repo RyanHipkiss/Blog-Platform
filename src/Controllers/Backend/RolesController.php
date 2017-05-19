@@ -19,14 +19,22 @@ class RolesController extends Controller
     public function show($request, $response, $args)
     {
         $roles = $this->roleManager->findAll();
-        return $this->render($response, 'admin/role/listing.html', ['roles' => $roles, 'notify' => Session::getNotify()]);
+        return $this->render(
+            $response, 
+            'admin/role/listing.html', 
+            ['roles' => $roles, 'notify' => Session::getNotify()]
+        );
     }
 
     public function view($request, $response, $args)
     {
         if(!empty($args['id'])) {
             $role = $this->roleManager->findById($args['id']);
-            return $this->render($response, 'admin/role/single.html', ['role' => $role, 'notify' => Session::getNotify()]);
+            return $this->render(
+                $response, 
+                'admin/role/single.html', 
+                ['role' => $role, 'notify' => Session::getNotify()]
+            );
         }
 
         return $this->render($response, 'admin/role/single.html');
@@ -38,7 +46,11 @@ class RolesController extends Controller
         $notify = $this->roleManager->save($input, (!empty($args['id'])) ? $args['id'] : null);
 
         if('error' == $notify['status']) {
-            return $this->render($response, 'admin/role/single.html', ['notify' => $notify]);
+            return $this->render(
+                $response, 
+                'admin/role/single.html', 
+                ['notify' => $notify]
+            );
         }
 
         return Redirect::route('admin.role', $notify, $notify);

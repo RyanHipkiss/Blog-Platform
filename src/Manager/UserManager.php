@@ -23,9 +23,19 @@ class UserManager
 		$this->userFactory   = $userFactory;
 	}
 
-	public function register(array $user)
+	public function findAll()
 	{
-		if(!Validator::email($user['email'])) {
+		$this->entityManager->getRepository('App\Entity\User')->findAll();
+	}
+
+	public function findByEmail($email)
+	{
+        return $this->entityManager->getRepository('App\Entity\User')->findOneByEmail($email);
+	}
+
+	public function register(array $input)
+	{
+		if(!Validator::email($input['email'])) {
 			return [
 				'status'  => 'error',
 				'message' => 'This is not a valid email address.'
@@ -33,8 +43,8 @@ class UserManager
 		}
 
 		if(
-			!Validator::minLength($user['password'], self::MIN_PASSWORD_LENGTH) || 
-			!Validator::maxLength($user['password'], self::MAX_PASSWORD_LENGTH)
+			!Validator::minLength($input['password'], self::MIN_PASSWORD_LENGTH) || 
+			!Validator::maxLength($input['password'], self::MAX_PASSWORD_LENGTH)
 		) {
 			return [
 				'status'  => 'error',
@@ -42,7 +52,7 @@ class UserManager
 			];
 		}
 
-		$user = $this->userFactory->create($user);
+		$user = $this->userFactory->create($input);
 
 		if(false === $user) {
 			return [
@@ -53,7 +63,8 @@ class UserManager
 
 		return [
 			'status'  => 'success',
-			'message' => 'Account created succesfully.'
+			'message' => 'Account created succesfully.',
+			'id'      => $this->findByEmail($input['email'])->getId()
 		];
 	}
 

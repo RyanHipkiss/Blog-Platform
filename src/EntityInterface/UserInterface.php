@@ -3,5 +3,5 @@
 namespace App\EntityInterface;
 
 interface UserInterface {
-	public function findByEmail($email);
+	public function findAll();
 }

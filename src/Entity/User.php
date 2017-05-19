@@ -38,6 +38,11 @@ class User
 		$this->setPassword($password);
 		$this->roles = new \Doctrine\Common\Collections\ArrayCollection();
 	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
 
 	public function getEmail()
 	{

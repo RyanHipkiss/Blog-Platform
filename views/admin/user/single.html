@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+	<form method="POST">
+        <h1>Create a user</h1>
+        <input type="email" name="email" value="{{ user.email }}" placeholder="ryan@ryanhipkiss.co.uk"><br>
+        <input type="password" name="password" value="" placeholder="********"><br>
+        
+        {% if roles %}
+            <select name="roles">
+                {% for role in roles %}
+                    <option value="{{ role.id }}">{{ role.name }}</option>
+                {% endfor %}
+            </select><br>
+        {% endif %}
+
+        <input type="submit" value="Save">
+    </form>
+
+    {{ notify.message }}
+
+    <a href="{{ route('admin.users') }}">Back to users</a>
+{% endblock %}

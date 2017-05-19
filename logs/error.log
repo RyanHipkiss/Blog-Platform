@@ -21,3 +21,6 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryan
 [15th May 2017 - 19:42:38] EntityManager#remove() expects parameter 1 to be an entity object, string given.
 [15th May 2017 - 19:42:42] EntityManager#remove() expects parameter 1 to be an entity object, string given.
 [16th May 2017 - 19:15:48] An exception occured in driver: SQLSTATE[HY000] [1049] Unknown database 'doctrine'
+[19th May 2017 - 06:58:08] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["ryan@westmidlandsmedia.com", "$2y$10$4d\/QJthQnEutzf2lzCPyQOszr4eASH9C3c7nup5k4eP3jjhVnKqVi"]:
+
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@westmidlandsmedia.com' for key 'UNIQ_2DA17977E7927C74'

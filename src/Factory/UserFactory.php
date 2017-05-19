@@ -5,6 +5,7 @@ namespace App\Factory;
 use Doctrine\ORM\EntityManager;
 use App\FactoryInterface\UserFactoryInterface;
 use App\Entity\User;
+use App\Entity\Role;
 use App\Service\Logger;
 
 class UserFactory implements UserFactoryInterface 
@@ -17,10 +18,15 @@ class UserFactory implements UserFactoryInterface
 		$this->entityManager = $entityManager;
 	}
 
-	public function create(array $user)
+	public function create(array $input)
 	{
 		try {
-			$user = new User($user['email'], $user['password']);
+			$user = new User($input['email'], $input['password']);
+
+			if(!empty($input['role'])) {
+				$role = $this->entityManager->getReference('App\Entity\Role', $id);
+				$user->addRole($role);
+			}
 			
 			$this->entityManager->persist($user);
 			$this->entityManager->flush();

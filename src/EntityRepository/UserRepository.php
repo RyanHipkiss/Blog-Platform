@@ -8,6 +8,20 @@ use App\Entity\User;
 
 class UserRepository extends EntityRepository implements UserInterface 
 {
+	public function findAll()
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        
+        $roles = 
+            $query
+                ->select('u')
+                ->from('\App\Entity\User', 'u')
+                ->getQuery()
+                ->getAll();
+
+		return $roles;
+    }
+
 	public function findByEmail($email)
 	{
 		$query = $this->getEntityManager()->createQueryBuilder();
