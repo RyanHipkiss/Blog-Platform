@@ -1,26 +1,8 @@
-
-[18th Mar 2017 - 16:14:47] This is a test error
-[18th Mar 2017 - 16:14:53] This is a test error 2
-[18th Mar 2017 - 16:14:54] This is a test error 2
-[18th Mar 2017 - 16:14:54] This is a test error 2
-[18th Mar 2017 - 16:14:55] This is a test error 2
-[5th Apr 2017 - 21:56:55] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["ryan@ryanhipkiss.co.uk", "$2y$10$F4WRscizrun2bvv5twFvcelzlJVCwCBKmztb7JvJ6xrFUJif75zWG"]:
+[24th May 2017 - 06:21:46] An exception occurred while executing 'UPDATE User SET email = ?, password = ? WHERE id = ?' with params ["ryan@ryanhipkiss.co.uk", "$2y$10$VjkbiSeusoFmSuT7YFEm2.EcdzYAXG\/GY5xhfiwb5Jcn8OuZeu\/.W", 11]:
 
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryanhipkiss.co.uk' for key 'UNIQ_2DA17977E7927C74'
-[5th Apr 2017 - 21:57:37] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["ryan@ryanhipkiss.co.uk", "$2y$10$0X83tdyP1pRln34x12Myse3Xlho6h40RXm\/.wyM3VkftMbbn.e4Ii"]:
-
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryanhipkiss.co.uk' for key 'UNIQ_2DA17977E7927C74'
-[12th Apr 2017 - 19:47:11] An exception occured in driver: SQLSTATE[HY000] [1049] Unknown database 'doctrine'
-[12th Apr 2017 - 19:47:19] An exception occured in driver: SQLSTATE[HY000] [1049] Unknown database 'doctrine'
-[13th Apr 2017 - 08:23:55] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["resources@ryanhipkiss.co.uk", "$2y$10$OKtbrtb0hPIeSm4xZJGzu.uROmTCSVEEYEFrvDeaVIsGZSkHbwvdG"]:
-
-SQLSTATE[42S02]: Base table or view not found: 1146 Table 'scotchbox.User' doesn't exist
-[23rd Apr 2017 - 15:35:23] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["ryan@ryanhipkiss.co.uk", "$2y$10$Sm0Y8x0MBVHFcQi2pYj4bu3aFjv8eBRcaERgVz8eq31g2B8r6bmDS"]:
-
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryanhipkiss.co.uk' for key 'UNIQ_2DA17977E7927C74'
-[15th May 2017 - 19:42:38] EntityManager#remove() expects parameter 1 to be an entity object, string given.
-[15th May 2017 - 19:42:42] EntityManager#remove() expects parameter 1 to be an entity object, string given.
-[16th May 2017 - 19:15:48] An exception occured in driver: SQLSTATE[HY000] [1049] Unknown database 'doctrine'
-[19th May 2017 - 06:58:08] An exception occurred while executing 'INSERT INTO User (email, password) VALUES (?, ?)' with params ["ryan@westmidlandsmedia.com", "$2y$10$4d\/QJthQnEutzf2lzCPyQOszr4eASH9C3c7nup5k4eP3jjhVnKqVi"]:
-
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@westmidlandsmedia.com' for key 'UNIQ_2DA17977E7927C74'
+[24th May 2017 - 06:34:54] Entity of type 'App\Entity\Role' for IDs id(12) was not found
+[24th May 2017 - 06:35:24] Undefined index: role
+[24th May 2017 - 06:35:43] A new entity was found through the relationship 'App\Entity\Role#users' that was not configured to cascade persist operations for entity: App\Entity\User@000000005dd9f1f400007f5f75a03621. To solve this issue: Either explicitly call EntityManager#persist() on this unknown entity or configure cascade persist  this association in the mapping for example @ManyToOne(..,cascade={"persist"}). If you cannot find out which entity causes the problem implement 'App\Entity\User#__toString()' to get a clue.
+[24th May 2017 - 06:37:37] Missing argument 2 for Doctrine\ORM\EntityManager::getReference(), called in /var/www/src/Factory/UserFactory.php on line 44 and defined
+[24th May 2017 - 06:37:51] Missing argument 2 for Doctrine\ORM\EntityManager::getReference(), called in /var/www/src/Factory/UserFactory.php on line 44 and defined

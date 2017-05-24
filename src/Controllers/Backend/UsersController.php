@@ -37,7 +37,7 @@ class UsersController extends Controller
             $user = $this->userManager->findById($args['id']);
 
             return $this->render(
-                $repsonse,
+                $response,
                 'admin/user/single.html',
                 ['user' => $user, 'roles' => $roles, 'notify' => Session::getNotify()]
             );
@@ -57,7 +57,7 @@ class UsersController extends Controller
     {
         $input = $request->getParsedBody();
         $notify = $this->userManager->register($input, (!empty($args['id'])) ? $args['id'] : null);
-
+        
         if('error' == $notify['status']) {
             return $this->render(
                 $response,

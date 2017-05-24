@@ -38,6 +38,11 @@ class User
 		$this->setPassword($password);
 		$this->roles = new \Doctrine\Common\Collections\ArrayCollection();
 	}
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
 	
 	public function getId()
 	{
@@ -66,8 +71,22 @@ class User
 
 	public function addRole(Role $role)
 	{
+		if($this->roles->contains($role)) {
+			return;
+		}
+
+		$this->roles->add($role);
 		$role->addUser($this);
-		$this->roles[] = $role;
+	}
+
+	public function removeRole(Role $role) 
+	{
+		if(!$this->roles->contains($role)) {
+			return;
+		}
+
+		$this->roles->removeElement($role);
+		$role->removeUser($this);
 	}
 
 	public function getRoles()

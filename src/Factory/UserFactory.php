@@ -37,4 +37,21 @@ class UserFactory implements UserFactoryInterface
 
 		return true;
 	}
+
+	public function update(array $input, $id)
+	{
+		try {
+			$user = $this->entityManager->getReference('App\Entity\User', $id);
+			$role = $this->entityManager->getReference('App\Entity\Role', $input['roles']);
+			$user->addRole($role);
+			$user->setEmail($input['email']);
+			$user->setPassword($input['password']);
+
+			$this->entityManager->persist($user);
+			$this->entityManager->flush();
+		} catch(\Exception $e) {
+			Logger::send($e->getMessage());
+			return false;
+		}
+	}
 }

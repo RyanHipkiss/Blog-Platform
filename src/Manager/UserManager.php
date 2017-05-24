@@ -23,9 +23,14 @@ class UserManager
 		$this->userFactory   = $userFactory;
 	}
 
+	public function findById($id)
+	{
+		return $this->entityManager->getRepository('App\Entity\User')->findOneById($id);
+	}
+
 	public function findAll()
 	{
-		$this->entityManager->getRepository('App\Entity\User')->findAll();
+		return $this->entityManager->getRepository('App\Entity\User')->findAll();
 	}
 
 	public function findByEmail($email)
@@ -33,7 +38,7 @@ class UserManager
         return $this->entityManager->getRepository('App\Entity\User')->findOneByEmail($email);
 	}
 
-	public function register(array $input)
+	public function register(array $input, $id = null)
 	{
 		if(!Validator::email($input['email'])) {
 			return [
@@ -43,8 +48,9 @@ class UserManager
 		}
 
 		if(
-			!Validator::minLength($input['password'], self::MIN_PASSWORD_LENGTH) || 
-			!Validator::maxLength($input['password'], self::MAX_PASSWORD_LENGTH)
+			(!Validator::minLength($input['password'], self::MIN_PASSWORD_LENGTH) || 
+			!Validator::maxLength($input['password'], self::MAX_PASSWORD_LENGTH)) &&
+			(empty($id) || !empty($id) && strlen($input['password']) > 0)
 		) {
 			return [
 				'status'  => 'error',
@@ -52,19 +58,36 @@ class UserManager
 			];
 		}
 
-		$user = $this->userFactory->create($input);
+		if(empty($id)) {
+			$user = $this->userFactory->create($input);
+
+			if(false === $user) {
+				return [
+					'status'  => 'error',
+					'message' => 'There was an error creating your account.'
+				];
+			}
+
+			return [
+				'status'  => 'success',
+				'message' => 'Account created succesfully.',
+				'id'      => $this->findByEmail($input['email'])->getId()
+			];
+		}
+
+		$user = $this->userFactory->update($input, $id);
 
 		if(false === $user) {
 			return [
 				'status'  => 'error',
-				'message' => 'There was an error creating your account.'
+				'message' => 'Sorry, there was an error updating your account'
 			];
 		}
 
 		return [
 			'status'  => 'success',
-			'message' => 'Account created succesfully.',
-			'id'      => $this->findByEmail($input['email'])->getId()
+			'message' => 'Account updated successfully',
+			'id'      => $id
 		];
 	}
 

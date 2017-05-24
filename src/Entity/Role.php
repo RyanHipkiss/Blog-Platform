@@ -3,26 +3,26 @@
 namespace App\Entity;
 
 /**
- * @Entity
- **/
+* @Entity
+**/
 
 class Role
 {
     /**
-	 * @Id
-	 * @Column(type="integer")
-	 * @GeneratedValue(strategy="AUTO")
-	 **/
-	protected $id;
+    * @Id
+    * @Column(type="integer")
+    * @GeneratedValue(strategy="AUTO")
+    **/
+    protected $id;
 
     /**
-     * @Column(type="string", length=255)
-     **/
+    * @Column(type="string", length=255)
+    **/
     protected $name;
 
     /**
-     * @ManyToMany(targetEntity="User", mappedBy="roles")
-     **/
+    * @ManyToMany(targetEntity="User", mappedBy="roles")
+    **/
     protected $users;
 
     public function __construct($name)
@@ -48,7 +48,22 @@ class Role
 
     public function addUser(User $user)
     {
-        $this->users[] = $user;
+        if($this->users->contains($user)) {
+            return;
+        }
+
+        $this->users->add($user);
+        $user->addRole($this);
+    }
+
+    public function removeUser(User $user)
+    {
+        if(!$this->users->contains($user)) {
+            return;
+        }
+
+        $this->users->removeElement($user);
+        $user->removeRole($this);
     }
 
     public function getUsers()
