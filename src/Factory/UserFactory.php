@@ -30,12 +30,12 @@ class UserFactory implements UserFactoryInterface
 			
 			$this->entityManager->persist($user);
 			$this->entityManager->flush();
+
+			return true;
 		} catch(\Exception $e) {
 			Logger::send($e->getMessage());
 			return false;
 		}
-
-		return true;
 	}
 
 	public function update(array $input, $id)
@@ -49,6 +49,7 @@ class UserFactory implements UserFactoryInterface
 
 			$this->entityManager->persist($user);
 			$this->entityManager->flush();
+			return true;
 		} catch(\Exception $e) {
 			Logger::send($e->getMessage());
 			return false;
@@ -61,8 +62,11 @@ class UserFactory implements UserFactoryInterface
 			$user = $this->entityManager->getReference('App\Entity\User', $id);
 			$this->entityManager->remove($user);
 			$this->entityManager->flush();
+
+			return true;
 		} catch(\Exception $e) {
 			Logger::send($e->getMessage());
+			return false;
 		}
 	}
 }
