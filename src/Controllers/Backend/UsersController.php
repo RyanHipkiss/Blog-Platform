@@ -35,7 +35,7 @@ class UsersController extends Controller
 
         if(!empty($args['id'])) {
             $user = $this->userManager->findById($args['id']);
-
+            
             return $this->render(
                 $response,
                 'admin/user/single.html',

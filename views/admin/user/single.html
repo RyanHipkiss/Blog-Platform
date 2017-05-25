@@ -9,7 +9,7 @@
         {% if roles %}
             <select name="roles">
                 {% for role in roles %}
-                    <option value="{{ role.id }}">{{ role.name }}</option>
+                    <option value="{{ role.id }}" {% if role.id == user.roles|first.id %} selected {% endif %}>{{ role.name }}</option>
                 {% endfor %}
             </select><br>
         {% endif %}
