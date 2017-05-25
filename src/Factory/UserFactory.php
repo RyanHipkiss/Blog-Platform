@@ -25,7 +25,7 @@ class UserFactory implements UserFactoryInterface
 
 			if(!empty($input['role'])) {
 				$role = $this->entityManager->getReference('App\Entity\Role', $id);
-				$user->addRole($role);
+				$user->setRoles([$role]);
 			}
 			
 			$this->entityManager->persist($user);
@@ -43,7 +43,7 @@ class UserFactory implements UserFactoryInterface
 		try {
 			$user = $this->entityManager->getReference('App\Entity\User', $id);
 			$role = $this->entityManager->getReference('App\Entity\Role', $input['roles']);
-			$user->addRole($role);
+			$user->setRoles([$role]);
 			$user->setEmail($input['email']);
 			$user->setPassword($input['password']);
 
@@ -52,6 +52,17 @@ class UserFactory implements UserFactoryInterface
 		} catch(\Exception $e) {
 			Logger::send($e->getMessage());
 			return false;
+		}
+	}
+
+	public function delete($id) 
+	{
+		try {
+			$user = $this->entityManager->getReference('App\Entity\User', $id);
+			$this->entityManager->remove($user);
+			$this->entityManager->flush();
+		} catch(\Exception $e) {
+			Logger::send($e->getMessage());
 		}
 	}
 }

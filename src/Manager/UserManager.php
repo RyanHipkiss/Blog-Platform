@@ -129,4 +129,9 @@ class UserManager
 	{
 		return Session::logout();
 	}
+
+	public function delete($id)
+	{
+		return $this->userFactory->delete($id);
+	}
 }

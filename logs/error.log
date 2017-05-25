@@ -6,3 +6,6 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ryan@ryan
 [24th May 2017 - 06:35:43] A new entity was found through the relationship 'App\Entity\Role#users' that was not configured to cascade persist operations for entity: App\Entity\User@000000005dd9f1f400007f5f75a03621. To solve this issue: Either explicitly call EntityManager#persist() on this unknown entity or configure cascade persist  this association in the mapping for example @ManyToOne(..,cascade={"persist"}). If you cannot find out which entity causes the problem implement 'App\Entity\User#__toString()' to get a clue.
 [24th May 2017 - 06:37:37] Missing argument 2 for Doctrine\ORM\EntityManager::getReference(), called in /var/www/src/Factory/UserFactory.php on line 44 and defined
 [24th May 2017 - 06:37:51] Missing argument 2 for Doctrine\ORM\EntityManager::getReference(), called in /var/www/src/Factory/UserFactory.php on line 44 and defined
+[25th May 2017 - 05:59:45] EntityManager#remove() expects parameter 1 to be an entity object, string given.
+[25th May 2017 - 05:59:48] EntityManager#remove() expects parameter 1 to be an entity object, string given.
+[25th May 2017 - 05:59:51] EntityManager#remove() expects parameter 1 to be an entity object, string given.

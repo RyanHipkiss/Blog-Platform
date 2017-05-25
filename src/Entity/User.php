@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+ use \Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  **/
@@ -36,7 +38,7 @@ class User
 	{
 		$this->setEmail($email);
 		$this->setPassword($password);
-		$this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->roles = new ArrayCollection();
 	}
 
 	public function setId($id)
@@ -87,6 +89,11 @@ class User
 
 		$this->roles->removeElement($role);
 		$role->removeUser($this);
+	}
+
+	public function setRoles(array $roles)
+	{
+		$this->roles = new ArrayCollection($roles);
 	}
 
 	public function getRoles()
