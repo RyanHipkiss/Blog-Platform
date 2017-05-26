@@ -44,8 +44,14 @@ class UserFactory implements UserFactoryInterface
 			$user = $this->entityManager->getReference('App\Entity\User', $id);
 			$role = $this->entityManager->getReference('App\Entity\Role', $input['roles']);
 			$user->setRoles([$role]);
-			$user->setEmail($input['email']);
-			$user->setPassword($input['password']);
+
+            if(!empty($input['email'])) {
+                $user->setEmail($input['email']);
+            }
+
+            if(!empty($input['password'])) {
+                $user->setPassword($input['password']);
+            }
 
 			$this->entityManager->persist($user);
 			$this->entityManager->flush();
