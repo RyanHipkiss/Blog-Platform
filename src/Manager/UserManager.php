@@ -129,7 +129,7 @@ class UserManager
 		return [
 			'status'  => 'success',
 			'message' => 'You have logged in successfully',
-			'id'      => $foundUser->getId()
+			'roles'      => $foundUser->getRoles()
 		];
 	}
 
@@ -141,5 +141,14 @@ class UserManager
 	public function delete($id)
 	{
 		return $this->userFactory->delete($id);
+	}
+
+	public function isAdmin($userRoles, $adminRoles)
+	{
+		$admin = $userRoles->filter(function($role) use($adminRoles) {
+			return in_array($role->getId(), $adminRoles);
+		});
+
+		return (!empty($admin));
 	}
 }

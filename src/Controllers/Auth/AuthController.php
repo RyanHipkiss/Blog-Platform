@@ -47,10 +47,10 @@ class AuthController extends Controller
 
 		if('success' === $logged['status']) {
 
-			if(in_array($logged['id'], self::getAdminRoles())) {
-				return Redirect::route('admin.index');
+			if($this->userManager->isAdmin($logged['roles'], self::getAdminRoles())) {
+				Redirect::route('admin.index');
 			} else {
-				return Redirect::route('home');
+				Redirect::route('home');
 			}
 		}
 
