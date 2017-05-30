@@ -39,6 +39,10 @@ class Middleware
 
     public function adminRole(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {   
+        if(empty(Session::user())) {
+            Redirect::route('auth.login');
+        }
+
         $user = $this->container->get(UserManager::class)->findByEmail(Session::user()['email']);
         $acceptedRoles = $this->container->get(AuthController::class)->getAdminRoles();
 
