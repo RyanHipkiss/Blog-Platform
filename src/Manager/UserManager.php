@@ -109,7 +109,11 @@ class UserManager
 
 		$foundUser = $this->entityManager->getRepository('App\Entity\User')->findOneByEmail($user['email']);
 	
-		$match = password_verify($user['password'], $foundUser->getPassword());
+		if($foundUser === null) {
+			$match = false;
+		} else {
+			$match = password_verify($user['password'], $foundUser->getPassword());
+		}
 
 		if(!$match) {
 			return [
@@ -122,7 +126,11 @@ class UserManager
 			'email' => $user['email']
 		]);
 		
-		return true;
+		return [
+			'status'  => 'success',
+			'message' => 'You have logged in successfully',
+			'id'      => $foundUser->getId()
+		];
 	}
 
 	public function logout()

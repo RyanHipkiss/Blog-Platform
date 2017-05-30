@@ -4,6 +4,7 @@ use \App\Service\Router;
 use \App\Service\Middleware;
 
 $routes = Router::setup(new \League\Route\RouteCollection($container));
+$middleware = new Middleware($container); 
 
 /**
  * Front End
@@ -17,7 +18,7 @@ $routes->group('/auth', function($routes) {
 	$routes->post('/login', 'App\Controllers\Auth\AuthController::postLogin');
 
 	$routes->get('/logout', 'App\Controllers\Auth\AuthController::logout')->setName('auth.logout');
-})->middleware([new Middleware, 'notLoggedIn']);
+})->middleware([$middleware, 'notLoggedIn']);
 
 /**
  * Back End (Admin)
@@ -43,7 +44,7 @@ $routes->group('/admin', function($routes) {
 	$routes->post('/users/edit/{id:number}', 'App\Controllers\Backend\UsersController::edit');
 	$routes->post('/users/add', 'App\Controllers\Backend\UsersController::edit');
 
-})->middleware([new Middleware, 'loggedIn']);
+})->middleware([$middleware, 'adminRole']);
 
 $response = $routes->dispatch($container->get('request'), $container->get('response'));
 

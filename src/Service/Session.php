@@ -20,7 +20,7 @@ class Session {
 			return [];
 		}
 		
-		return $_SESSION['user'];
+		return array_shift($_SESSION['user']);
 	}
 
 	public static function generateCsrf()

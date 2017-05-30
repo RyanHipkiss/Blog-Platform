@@ -60,7 +60,6 @@ class Bootstrap
 
 		        \App\FactoryInterface\UserFactoryInterface::class => \DI\object(\App\Factory\UserFactory::class),
 				\App\FactoryInterface\RoleFactoryInterface::class => \DI\object(\App\Factory\RoleFactory::class),
-
 			]
 		);
 
